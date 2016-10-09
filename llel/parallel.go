@@ -9,6 +9,7 @@ import "bufio"
 import "sync"
 import "strconv"
 
+//struct to save details of the search
 type MapResults struct {
 	filename string
 	mr       map[string]int
@@ -58,6 +59,7 @@ func main() {
 
 func FreqCount(filename string, mapresults chan MapResults) {
 
+	//Allocate object
 	lmapr := new(MapResults)
 	lmapr.mr = make(map[string]int)
 	lmapr.filename = filename
@@ -66,7 +68,7 @@ func FreqCount(filename string, mapresults chan MapResults) {
 		fmt.Printf("Error opening %s\n", filename)
 		os.Exit(1)
 	}
-	fmt.Printf("Reading %s:\n", filename)
+	//fmt.Printf("Reading %s:\n", filename)
 	defer fd.Close()
 	scanner := bufio.NewScanner(fd)
 	for scanner.Scan() {
